@@ -1,12 +1,6 @@
 <h2 class="flex-center">Log in</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <% if flash[:alert] %>
-    <div class="alert alert-error">
-      <%= flash[:alert] %>
-    </div>
-  <% end %>
-
   <div class="columns">
     <div class="column is-12">
       <div class="columns is-marginless">
