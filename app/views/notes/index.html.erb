@@ -1,0 +1,18 @@
+<h1 class="flex-center">Notes</h1>
+<div class="columns">
+  <div class="column is-12">
+    <h2 class="flex-center">Welcome&nbsp;<span class="main-color"><%= current_user.nickname %></span></h2>
+  </div>
+</div>
+<div id="notes">
+  <% @notes.each do |note| %>
+    <%= render note %>
+    <p>
+      <%= link_to "Show this note", note %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New note", new_note_path %>
+
+<%= link_to "Sign out", destroy_user_session_path, data: { "turbo-method": :delete } %>

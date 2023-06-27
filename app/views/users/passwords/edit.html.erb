@@ -1,0 +1,73 @@
+<h2 class="flex-center">Change your password</h2>
+
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+  <div class="columns">
+    <div class="column is-12 flex-center">
+      <%= render "users/shared/error_messages", resource: resource %>
+      <%= f.hidden_field :reset_password_token %>
+    </div>
+  </div>
+
+  <div class="columns">
+    <div class="column is-12">
+      <div class="columns is-marginless">
+        <div class="column is-12 flex-center">
+          <%= f.label :password %>&nbsp;
+          <% if @minimum_password_length %>
+            <em>(<%= @minimum_password_length %> characters minimum)</em>
+          <% end %>
+        </div>
+      </div>
+      <div class="columns is-marginless">
+        <div class="column is-12 flex-center">
+          <%= f.password_field :password, autocomplete: "new-password" %>
+        </div>
+      </div>
+      <% if @errors && @errors["password"] %>
+        <div class="columns is-marginless">
+          <div class="column is-12 flex-center">
+            <%= render(Components::ErrorTagComponent.new(errors: @errors["password"])) %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="columns">
+    <div class="column is-12">
+      <div class="columns is-marginless">
+        <div class="column is-12 flex-center">
+          <%= f.label :password_confirmation %>
+        </div>
+      </div>
+      <div class="columns is-marginless">
+        <div class="column is-12 flex-center">
+          <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+        </div>
+      </div>
+      <% if @errors && @errors["password_confirmation"] %>
+        <div class="columns is-marginless">
+          <div class="column is-12 flex-center">
+            <%= render(Components::ErrorTagComponent.new(errors: @errors["password_confirmation"])) %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="columns">
+    <div class="column is-12">
+      <div class="columns is-marginless">
+        <div class="column is-12 flex-center">
+          <%= f.submit "Change my password", class: 'button' %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<div class="columns">
+  <div class="column is-12">
+    <%= render "users/shared/links" %>
+  </div>
+</div>

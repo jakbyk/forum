@@ -1,16 +1,50 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Forum</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>Forum</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
-  </head>
+  <%= stylesheet_link_tag 'application', 'data-turbo-track': 'reload' %>
+  <%= stylesheet_link_tag 'trix' %>
+  <%= javascript_importmap_tags %>
+  <link href="https://vjs.zencdn.net/8.3.0/video-js.css" rel="stylesheet" />
+</head>
 
-  <body>
-    <%= yield %>
-  </body>
+<body>
+<div class="columns flex-center">
+  <div class="column is-6">
+    <img src="<%= asset_path('logo.png') %>" />
+  </div>
+</div>
+<div class="columns flex-center">
+  <div class="column is-9">
+    <% if notice || alert %>
+      <div class="columns">
+        <div class="column is-12">
+          <div class="columns is-multiline">
+            <% if notice %>
+              <div class="column is-12">
+                <div class="notification is-success block"><%= notice %></div>
+              </div>
+            <% end %>
+            <% if alert %>
+              <div class="column is-12">
+                <div class="notification is-danger block"><%= alert %></div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <div class="columns">
+      <div class="column is-12">
+        <%= yield %>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="https://vjs.zencdn.net/8.3.0/video.min.js"></script>
+</body>
 </html>

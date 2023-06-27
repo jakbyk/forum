@@ -1,0 +1,14 @@
+<% if user_signed_in? %>
+  <script type="text/javascript">
+      window.location.href = "/notes"
+  </script>
+<% else %>
+  <div class="columns">
+    <div class="column is-12 flex-center">
+      <h2><%= link_to "Log in", user_session_path, class: 'main-color' %>
+        or
+        <%= link_to "Sign up", new_registration_path(:user), class: 'main-color' %>
+        before start</h2>
+    </div>
+  </div>
+<% end %>

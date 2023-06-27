@@ -1,6 +1,16 @@
 require_relative "boot"
 
 require "rails/all"
+require 'active_model/railtie'
+require 'active_job/railtie'
+require 'active_record/railtie'
+require 'active_storage/engine'
+require 'action_controller/railtie'
+require 'action_mailer/railtie'
+require 'action_text/engine'
+require 'action_view/railtie'
+require 'action_cable/engine'
+require 'sprockets/railtie'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -18,5 +28,9 @@ module Forum
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    Rails::Html::WhiteListSanitizer.allowed_tags << 'video'
+    Rails::Html::WhiteListSanitizer.allowed_tags << 'source'
+    Rails::Html::WhiteListSanitizer.allowed_attributes << 'controls'
   end
 end
