@@ -1,13 +1,21 @@
 <figure class="attachment attachment--<%= blob.representable? ? "preview" : "file" %> attachment--<%= blob.filename.extension %>">
+  <% mime_type = MIME::Types.type_for(blob.filename.to_s).first %>
   <% if blob.image? %>
-    <%= image_tag blob.representation(resize_to_limit: local_assigns[:in_gallery] ? [800, 600] : [1024, 768]) %>
+    <% if mime_type&.content_type == 'image/svg+xml' %>
+      <p>SVG images are not support, please convert into PNG.</p>
+    <% else %>
+      <%= image_tag url_for(blob.attachable) %>
+    <% end %>
   <% end %>
   <% if blob.video? %>
     <%= video_tag url_for(blob.attachable),
-    preloads: 'auto',
-    controls: 'controls',
-    width: '640',
-    height: '360' %>
+                  preloads: 'auto',
+                  controls: 'controls',
+                  width:    '640',
+                  height:   '360' %>
+  <% end %>
+  <% if mime_type&.content_type == 'application/pdf' %>
+    <%= link_to "Open PDF", url_for(blob.attachable), target: '_blank' %>
   <% end %>
 
   <figcaption class="attachment__caption">
