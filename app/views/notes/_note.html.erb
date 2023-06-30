@@ -1,12 +1,20 @@
-<div id="<%= dom_id note %>">
-  <p>
-    <strong>Title:</strong>
-    <%= note.title %>
-  </p>
-
-  <p>
-    <strong>Body:</strong>
-    <%= note.body %>
-  </p>
-
+<div class="card" style="width: 100%">
+  <div class="card-content">
+    <header class="card-header space-between">
+      <h2 class="main-color fit-content"><%= note.title %></h2>
+      <span class="fit-content second-color"><%= l(note.updated_at, format: "%Y-%m-%d %H:%M:%S") %></span>
+    </header>
+    <div class="content">
+      <%= note.body %>
+    </div>
+    <footer class="card-footer flex-right">
+      <% if controller_name == 'notes' && action_name == 'show' %>
+        <%= link_to "Back to notes", notes_path, class: "card-footer-item button small-margin-left" %>
+      <% else %>
+        <%= link_to "Show only this note", note, class: 'card-footer-item button small-margin-left' %>
+      <% end %>
+      <%= link_to "Edit this note", edit_note_path(note), class: "card-footer-item button small-margin-left is-warning" %>
+      <%= link_to "Destroy this note", note_path(note), data: { turbo_method: :delete, turbo_confirm: 'You want to remove this note?' }, class: "card-footer-item button small-margin-left is-danger" %>
+    </footer>
+  </div>
 </div>

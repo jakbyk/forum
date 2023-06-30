@@ -1,40 +1,24 @@
-<h2 class="flex-center">Forgot your password?</h2>
+<div class="columns flex-center">
+  <div class="column is-4">
+    <h2 class="flex-center">Forgot your password?</h2>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <div class="columns">
-    <div class="column is-12 flex-center">
-      <%= render "users/shared/error_messages", resource: resource %>
-    </div>
-  </div>
-
-  <div class="columns">
-    <div class="column is-12">
-      <div class="columns is-marginless">
-        <div class="column is-12 flex-center">
-          <%= f.label :email %>
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+      <%= render Components::TextInputComponent.new(form:       f,
+                                                    field_name: 'email',
+                                                    value:      @email,
+                                                    errors:     @errors && @errors["email"] ? @errors["email"] : nil,
+                                                    field_type: 'email',
+                                                    autofocus:  true) %>
+      <div class="columns">
+        <div class="column is-12">
+          <div class="columns is-marginless">
+            <div class="column is-12 flex-center">
+              <%= f.submit "Send me reset password instructions", class: 'button is-primary' %>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="columns is-marginless">
-        <div class="column is-12 flex-center">
-          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="columns">
-    <div class="column is-12">
-      <div class="columns is-marginless">
-        <div class="column is-12 flex-center">
-          <%= f.submit "Send me reset password instructions", class: 'button' %>
-        </div>
-      </div>
-    </div>
-  </div>
-<% end %>
-
-<div class="columns">
-  <div class="column is-12">
-    <%= render "users/shared/links" %>
+    <% end %>
   </div>
 </div>
+

@@ -1,72 +1,43 @@
-<h2 class="flex-center">Log in</h2>
+<div class="columns flex-center">
+  <div class="column is-4">
+    <h2 class="flex-center">Log in</h2>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="columns">
-    <div class="column is-12">
-      <div class="columns is-marginless">
-        <div class="column is-12 flex-center">
-          <%= f.label :email %>
-        </div>
-      </div>
-      <div class="columns is-marginless">
-        <div class="column is-12 flex-center">
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", value: @email %>
-        </div>
-      </div>
-      <% if @errors && @errors["email"] %>
-        <div class="columns is-marginless">
-          <div class="column is-12 flex-center">
-            <%= render(Components::ErrorTagComponent.new(errors: @errors["email"])) %>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <%= render Components::TextInputComponent.new(form:       f,
+                                                    field_name: 'email',
+                                                    value:      @email,
+                                                    errors:     @errors && @errors["email"] ? @errors["email"] : nil,
+                                                    autofocus:  true,
+                                                    field_type: 'email') %>
+      <%= render Components::TextInputComponent.new(form:       f,
+                                                    field_name: 'password',
+                                                    errors:     @errors && @errors["password"] ? @errors["password"] : nil,
+                                                    field_type: 'password') %>
+
+      <% if devise_mapping.rememberable? %>
+        <div class="columns">
+          <div class="column is-12">
+            <div class="columns is-marginless">
+              <div class="column is-12 flex-center">
+                <label class="checkbox">
+                  <%= f.check_box :remember_me, class: 'checkbox' %>
+                </label>
+                <%= f.label :remember_me, class: 'small-margin-left' %>
+              </div>
+            </div>
           </div>
         </div>
       <% end %>
-    </div>
-  </div>
 
-  <div class="columns">
-    <div class="column is-12">
-      <div class="columns is-marginless">
-        <div class="column is-12 flex-center">
-          <%= f.label :password %>
-        </div>
-      </div>
-      <div class="columns is-marginless">
-        <div class="column is-12 flex-center">
-          <%= f.password_field :password, autocomplete: "current-password" %>
-        </div>
-      </div>
-      <% if @errors && @errors["password"] %>
-        <div class="columns is-marginless">
-          <div class="column is-12 flex-center">
-            <%= render(Components::ErrorTagComponent.new(errors: @errors["password"])) %>
-          </div>
-        </div>
-      <% end %>
-    </div>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="columns">
-      <div class="column is-12">
-        <div class="columns is-marginless">
-          <div class="column is-12 flex-center">
-            <%= f.check_box :remember_me %>
-            <%= f.label :remember_me, class: 'small-margin-left' %>
+      <div class="columns small-margin-bottom">
+        <div class="column is-12">
+          <div class="columns is-marginless">
+            <div class="column is-12 flex-center">
+              <%= f.submit "Log in", class: 'button is-primary' %>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  <% end %>
-
-  <div class="columns small-margin-bottom">
-    <div class="column is-12">
-      <div class="columns is-marginless">
-        <div class="column is-12 flex-center">
-          <%= f.submit "Log in", class: 'button' %>
-        </div>
-      </div>
-    </div>
+    <% end %>
   </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+</div>

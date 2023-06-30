@@ -1,0 +1,27 @@
+<div class="columns">
+  <div class="column is-12">
+    <div class="columns is-marginless">
+      <div class="column is-12 flex-center">
+        <%= @form.label @field_name %>
+      </div>
+    </div>
+    <div class="columns is-marginless">
+      <div class="column is-12 flex-center">
+        <% if @field_type == 'email' %>
+          <%= @form.email_field @field_name, autofocus: @autofocus, autocomplete: @field_name, value: @value, class: "input #{ 'is-danger' if @errors }" %>
+        <% elsif @field_type == 'password' %>
+          <%= @form.password_field @field_name, autofocus: @autofocus, autocomplete: @field_name, value: @value, class: "input #{ 'is-danger' if @errors }" %>
+        <% else %>
+          <%= @form.text_field @field_name, autofocus: @autofocus, autocomplete: @field_name, value: @value, class: "input #{ 'is-danger' if @errors }" %>
+        <% end %>
+      </div>
+    </div>
+    <% if @errors %>
+      <div class="columns is-marginless">
+        <div class="column is-12 flex-center">
+          <%= render(Components::ErrorTagComponent.new(errors: @errors)) %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

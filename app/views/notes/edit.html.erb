@@ -1,10 +1,12 @@
-<h1>Editing note</h1>
-
+<div class="columns">
+  <div class="column is-12 flex-center">
+    <h1>Editing note</h1>
+  </div>
+</div>
 <%= render "form", note: @note %>
-
-<br>
-
-<div>
-  <%= link_to "Show this note", @note %> |
-  <%= link_to "Back to notes", notes_path %>
+<div class="columns">
+  <div class="column is-12 flex-center">
+    <%= link_to "Show this note", @note, class: "button" %>
+    <%= link_to "Back to notes", notes_path, class: "button small-margin-left" %>
+  </div>
 </div>

@@ -9,42 +9,85 @@
   <%= stylesheet_link_tag 'application', 'data-turbo-track': 'reload' %>
   <%= stylesheet_link_tag 'trix' %>
   <%= javascript_importmap_tags %>
-  <link href="https://vjs.zencdn.net/8.3.0/video-js.css" rel="stylesheet" />
+  <link href="https://vjs.zencdn.net/8.3.0/video-js.css" rel="stylesheet"/>
 </head>
 
 <body>
-<div class="columns flex-center">
-  <div class="column is-6">
-    <img src="<%= asset_path('logo.png') %>" />
+<div style="flex: 1;">
+  <div class="columns flex-center animation-logo">
+    <div class="column is-6" style="overflow: hidden;" data-controller="swipe">
+      <h1 class="logo main-color" data-swipe-target="text" style="width: fit-content; margin: auto;">KEEP NOTES</h1>
+    </div>
   </div>
-</div>
-<div class="columns flex-center">
-  <div class="column is-9">
-    <% if notice || alert %>
+  <div class="columns flex-center">
+    <div class="column is-9">
       <div class="columns">
-        <div class="column is-12">
-          <div class="columns is-multiline">
-            <% if notice %>
-              <div class="column is-12">
-                <div class="notification is-success block"><%= notice %></div>
-              </div>
+        <div class="column is-12 menu flex-center">
+          <ul class="fit-content">
+            <% if !current_user %>
+              <%- if controller_name != 'sessions' %>
+                <li><a href="<%= new_session_path(User) %>">Log in</a></li>
+              <% end %>
+
+              <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+                <li><a href="<%= new_registration_path(User) %>">Sign up</a></li>
+              <% end %>
+
+              <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+                <li><a href="<%= new_password_path(User) %>">Forgot your password?</a></li>
+              <% end %>
+
+              <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
+                <li><a href="<%= new_confirmation_path(User) %>">Didn't receive confirmation instructions?</a></li>
+              <% end %>
+
+              <%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
+                <li><a href="<%= new_unlock_path(User) %>">Didn't receive unlock instructions?</a></li>
+              <% end %>
+
+              <%- if devise_mapping.omniauthable? %>
+                <%- resource_class.omniauth_providers.each do |provider| %>
+                  <li>
+                    <a href="<%= omniauth_authorize_path(User, provider) %>"><%= "Sign in with #{OmniAuth::Utils.camelize(provider)}" %></a>
+                  </li>
+                <% end %>
+              <% end %>
+            <% else %>
+              <li><a href="<%= notes_path %>">Notatki</a></li>
+              <li><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li>
             <% end %>
-            <% if alert %>
-              <div class="column is-12">
-                <div class="notification is-danger block"><%= alert %></div>
-              </div>
-            <% end %>
-          </div>
+          </ul>
         </div>
       </div>
-    <% end %>
-    <div class="columns">
-      <div class="column is-12">
-        <%= yield %>
+      <% if notice || alert %>
+        <div class="columns notification-animation">
+          <div class="column is-12">
+            <div class="columns is-multiline">
+              <% if notice %>
+                <div class="column is-12">
+                  <div class="notification is-success"><%= notice %></div>
+                </div>
+              <% end %>
+              <% if alert %>
+                <div class="column is-12">
+                  <div class="notification is-danger"><%= alert %></div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <div class="columns">
+        <div class="column is-12">
+          <%= yield %>
+        </div>
       </div>
     </div>
   </div>
 </div>
-<script src="https://vjs.zencdn.net/8.3.0/video.min.js"></script>
+<footer>
+  <script src="https://vjs.zencdn.net/8.3.0/video.min.js"></script>
+  Powered&nbsp;by&nbsp;<img src="<%= asset_path('e-lea.png') %>" style="height: 1em;" alt="e-lea" />&nbsp;TEAM
+</footer>
 </body>
 </html>

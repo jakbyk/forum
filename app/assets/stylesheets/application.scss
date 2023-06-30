@@ -1,27 +1,74 @@
 @import "bulma";
 @import "actiontext";
 
+$main-background: rgba(255, 255, 255, 0.94);
+$second-background: rgba(0, 0, 0, 0.10);
+$contrast-background: rgba(0, 0, 0, 0.94);
+$main-font-color: rgba(0, 0, 0, 0.88);
+$second-font-color: rgba(0, 0, 0, 0.54);
+$contrast-font-color: rgba(255, 255, 255, 0.88);
+$main-header-color: rgba(0, 0, 0, 1);
+$second-header-color: rgba(0, 0, 0, 0.95);
+$main-color: rgba(100, 205, 100, 0.95);
+$main-button-background: rgb(0, 218, 0);
+$main-button-background-10: rgba(0, 218, 0, 0.1);
+$danger-color: rgba(205, 100, 100, 0.95);
+
 html, body {
-  background-color: black;
-  color: rgba(255,255,255,0.88);
-  font-family: BlinkMacSystemFont,-apple-system,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Fira Sans","Droid Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+  background-color: $main-background;
+  color: $main-font-color;
+  font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 h1 {
   font-size: 2.5em;
   font-weight: 700;
-  color: rgba(255,255,255,1);
+  color: $main-header-color;
 }
 
 h2 {
   font-size: 2em;
   font-weight: 700;
-  color: rgba(255,255,255,0.95);
+  color: $second-header-color;
+}
+
+footer {
+  border-top: 1px solid $second-background;
+  display: flex;
+  justify-content: flex-end;
+  background-color: $second-background;
+}
+
+trix-editor {
+  background-color: $main-background;
+  color: $main-header-color !important;
+}
+
+strong {
+  color: $main-header-color;
 }
 
 .flex-center {
   display: flex;
   justify-content: center;
+}
+
+.flex-left {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.flex-right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.space-between {
+  display: flex;
+  justify-content: space-between;
 }
 
 .small-margin-bottom {
@@ -33,18 +80,173 @@ h2 {
 }
 
 .main-color {
-  color: #3dff0a;
+  color: $main-color;
+  font-weight: 500;
+}
+
+.second-color {
+  color: $second-font-color;
 }
 
 .trix-button {
-  background-color: white !important;
+  background-color: $main-background !important;
 }
 
-trix-editor {
-  background-color: black;
-  color: rgba(255,255,255,0.95) !important;
+.fit-content {
+  width: fit-content;
 }
 
-strong {
-  color: rgba(255,255,255,0.95);
+.button:hover {
+  color: $main-color;
+}
+
+.menu ul, .menu ul li {
+  display: block;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu ul {
+  float: left;
+  background-color: $contrast-background;
+  padding: 1px 0 1px 1px;
+  border: 1px solid $main-background;
+  color: $contrast-font-color;
+}
+
+.menu ul li {
+  float: left;
+}
+
+.menu ul a:link, .menu ul a:visited {
+  text-decoration: none;
+  display: block;
+  font-weight: bold;
+  background: $contrast-background;
+  color: $contrast-font-color;
+  padding: 10px 20px;
+  border-right: 1px solid $main-background;
+  border-right: 1px solid $main-background;
+}
+
+.menu ul a:hover {
+  color: $main-color;
+}
+
+.menu {
+  border: none;
+}
+
+.card-header {
+  border-bottom: 1px solid $second-background;
+  margin-bottom: 24px;
+}
+
+.card {
+  background-color: $main-background;
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+.button.is-primary {
+  background-color: $main-button-background;
+  color: $contrast-font-color;
+  font-weight: 700;
+}
+
+.button.is-primary:hover {
+  background-color: $main-color;
+  color: $main-font-color;
+  font-weight: 700;
+}
+
+.checkbox input:checked, .menu-checkbox input:checked, .radio input:checked {
+  background: $main-button-background;
+  border-color: $main-color;
+}
+
+.card-footer {
+  background-color: $second-background;
+}
+
+input.input,
+input.input:hover,
+input.input:focus {
+  border: $main-color 1px solid;
+}
+
+input.input.is-danger,
+input.input.is-danger:hover,
+input.input.is-danger:focus {
+  border: $danger-color 1px solid;
+  color: $danger-color;
+}
+
+input.input:-webkit-autofill,
+input.input:-webkit-autofill:hover,
+input.input:-webkit-autofill:focus {
+  -webkit-text-fill-color: $main-font-color;
+  -webkit-box-shadow: 0 0 0px 40rem $main-button-background-10 inset;
+}
+
+.logo {
+  font-size: 5em;
+  letter-spacing: 0.25em;
+  font-weight: 300;
+  text-transform: capitalize;
+  font-style: italic;
+  animation: swipe 20s ease-in-out infinite;
+  animation-delay: 10s;
+}
+
+@keyframes open {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+
+.notification-animation {
+  animation-name: close;
+  animation-delay: 10s;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes close {
+  0% {
+    opacity: 100%;
+    height: 52px;
+  }
+  50% {
+    opacity: 0;
+    height: 52px;
+  }
+  100% {
+    opacity: 0;
+    height: 0px;
+  }
+}
+
+.animation-logo {
+  animation: open 2s ease-in-out 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes swipe {
+  0%, 50%, 100% {
+    padding-left: 0%;
+    padding-right: 0%;
+  }
+  25% {
+    padding-left: calc(-100% + var(--element-width));
+    padding-right: calc(100% - var(--element-width));
+  }
+  75% {
+    padding-left: calc(100% - var(--element-width));
+    padding-right: calc(-100% + var(--element-width));
+  }
 }
