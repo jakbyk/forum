@@ -22,3 +22,15 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+https://guides.rubyonrails.org/active_storage_overview.html
+ImageMagick - for pictures (Version: ImageMagick 7.1.1-12)
+ffmpeg - for videos (ffmpeg version 6.0)
+
+ruby 3.1.2p20
+
+bundle update
+bundle install
+
+rails s ;)
+
