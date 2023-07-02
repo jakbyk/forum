@@ -16,4 +16,7 @@ class Note < ApplicationRecord
   belongs_to :user
 
   has_rich_text :body
+
+  validates :title, presence: true
+  validates :title, length: { minimum: 5, maximum: 2000 }, allow_blank: false
 end
