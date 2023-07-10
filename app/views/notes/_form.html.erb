@@ -1,21 +1,41 @@
 <%= form_with model: note do |form| %>
   <div class="columns">
     <div class="column is-12">
-      <%= form.label :title %><br>
-      <%= form.text_field :title, class: 'input' %>
-      <% note.errors.full_messages_for(:title).each do |message| %>
-        <div class="error"><%= message %></div>
-      <% end %>
+      <div class="columns is-marginless">
+        <div class="column is-12 flex-center">
+          <%= form.label :title %>
+        </div>
+      </div>
+      <div class="columns is-marginless">
+        <div class="column is-12">
+          <%= form.text_field :title, class: 'input' %>
+        </div>
+      </div>
+      <div class="columns is-marginless">
+        <div class="column is-12 flex-center">
+          <%= render(Components::ErrorTagComponent.new(errors: note.errors.full_messages_for(:title))) %>
+        </div>
+      </div>
     </div>
   </div>
 
   <div class="columns">
     <div class="column is-12">
-      <%= form.label :body %><br>
-      <%= form.rich_text_area :body %><br>
-      <% note.errors.full_messages_for(:body).each do |message| %>
-        <div class="error"><%= message %></div>
-      <% end %>
+      <div class="columns is-marginless">
+        <div class="column is-12 flex-center">
+          <%= form.label :body %>
+        </div>
+      </div>
+      <div class="columns is-marginless">
+        <div class="column is-12">
+          <%= form.rich_text_area :body %>
+        </div>
+      </div>
+      <div class="columns is-marginless">
+        <div class="column is-12 flex-center">
+          <%= render(Components::ErrorTagComponent.new(errors: note.errors.full_messages_for(:body))) %>
+        </div>
+      </div>
     </div>
   </div>
 
