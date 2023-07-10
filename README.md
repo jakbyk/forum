@@ -37,3 +37,11 @@ bundle install
 
 rails s ;)
 
+Usefull function pause at rspec feature specs:
+
+  def pause
+    puts 'Press ENTER to continue (...)'
+    $stdin.gets
+  end
+
+Remember when using it u have to click ENTER to procced so don't use that in read only terminals.
