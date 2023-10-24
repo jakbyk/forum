@@ -274,6 +274,7 @@ GEM
 
 PLATFORMS
   x86_64-darwin-19
+  x86_64-darwin-23
 
 DEPENDENCIES
   actiontext
@@ -306,7 +307,7 @@ DEPENDENCIES
   webdrivers
 
 RUBY VERSION
-   ruby 3.1.2p20
+   ruby 3.1.3p185
 
 BUNDLED WITH
    2.3.20
