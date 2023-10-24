@@ -1,0 +1,99 @@
+{
+    "name": string,
+    "id": string,
+    "inboundServices": [
+        enum (InboundServiceType)
+    ],
+    "instanceClass": string,
+    "network": {
+        object (Network)
+    },
+    "zones": [
+        string
+    ],
+    "resources": {
+        object (Resources)
+    },
+    "runtime": string,
+    "runtimeChannel": string,
+    "threadsafe": boolean,
+    "vm": boolean,
+    "flexibleRuntimeSettings": {
+        object (FlexibleRuntimeSettings)
+    },
+    "appEngineApis": boolean,
+    "betaSettings": {
+        string: string,
+        ...
+    },
+    "env": string,
+    "servingStatus": enum (ServingStatus),
+    "createdBy": string,
+    "createTime": string,
+    "diskUsageBytes": string,
+    "runtimeApiVersion": string,
+    "runtimeMainExecutablePath": string,
+    "serviceAccount": string,
+    "handlers": [
+        {
+            object (UrlMap)
+        }
+    ],
+    "errorHandlers": [
+        {
+            object (ErrorHandler)
+        }
+    ],
+    "libraries": [
+        {
+            object (Library)
+        }
+    ],
+    "apiConfig": {
+        object (ApiConfigHandler)
+    },
+    "envVariables": {
+        string: string,
+        ...
+    },
+    "buildEnvVariables": {
+        string: string,
+        ...
+    },
+    "defaultExpiration": string,
+    "healthCheck": {
+        object (HealthCheck)
+    },
+    "readinessCheck": {
+        object (ReadinessCheck)
+    },
+    "livenessCheck": {
+        object (LivenessCheck)
+    },
+    "nobuildFilesRegex": string,
+    "deployment": {
+        object (Deployment)
+    },
+    "versionUrl": string,
+    "endpointsApiService": {
+        object (EndpointsApiService)
+    },
+    "entrypoint": {
+        object (Entrypoint)
+    },
+    "vpcAccessConnector": {
+        object (VpcAccessConnector)
+    },
+
+    // Union field scaling can be only one of the following:
+    "automaticScaling": {
+        object (AutomaticScaling)
+    },
+    "basicScaling": {
+        object (BasicScaling)
+    },
+    "manualScaling": {
+        object (ManualScaling)
+    }
+    // End of list of possible types for union field scaling.
+}
