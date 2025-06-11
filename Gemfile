@@ -66,6 +66,9 @@ gem 'simple_form'
 
 gem 'mime-types'
 
+gem "cloudinary"
+gem "activestorage-cloudinary-service", "~> 0.2.2"
+
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
